@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/react-threejs-wall-game/static/css/main.9efdb064.css",
+    "main.js": "/react-threejs-wall-game/static/js/main.ecf1785d.js",
+    "static/js/787.138f3980.chunk.js": "/react-threejs-wall-game/static/js/787.138f3980.chunk.js",
+    "index.html": "/react-threejs-wall-game/index.html",
+    "main.9efdb064.css.map": "/react-threejs-wall-game/static/css/main.9efdb064.css.map",
+    "main.ecf1785d.js.map": "/react-threejs-wall-game/static/js/main.ecf1785d.js.map",
+    "787.138f3980.chunk.js.map": "/react-threejs-wall-game/static/js/787.138f3980.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9efdb064.css",
+    "static/js/main.ecf1785d.js"
+  ]
+}
