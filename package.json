@@ -2,6 +2,7 @@
   "name": "simple-game",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://tankh99.github.io/react-threejs-wall-game",
   "dependencies": {
     "@react-three/cannon": "^6.5.0",
     "@react-three/drei": "^9.37.1",
@@ -24,6 +25,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -49,6 +52,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.12",
+    "gh-pages": "^4.0.0",
     "install": "^0.13.0",
     "npm": "^8.19.2",
     "postcss": "^8.4.18",
