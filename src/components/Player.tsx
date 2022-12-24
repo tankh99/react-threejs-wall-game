@@ -54,6 +54,7 @@ export default function Player(props: any) {
     )
     newVector.x = 0;
     newVector.z = 0;
+    newVector.y = -10
     if (moveForward) {
       newVector.z = -playerSpeed
     }

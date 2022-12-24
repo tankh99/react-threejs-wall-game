@@ -9,7 +9,12 @@ import Player from '../components/Player'
 import { BASE_GAME_SPEED } from '../constants/global'
 import useGameState from '../hooks/useGameState'
 import WallInstancer from './WallInstancer'
-// import {GUI} from 'three/examples/jsm/libs/dat.gui.module'
+import useAudio from '../hooks/useAudio'
+import scoreUp from '../assets/score-up.wav'
+import GameOverScreen from '../components/GameOverScreen'
+import ScoreText from '../components/ScoreText'
+import StartGameScreen from '../components/StartGameScreen'
+import bgm from '../assets/bgm.mp3'
 
 export const GameStateContext = createContext({
   lostGame: false,
@@ -18,16 +23,18 @@ export const GameStateContext = createContext({
 
 const DEFAULT_STARTING_POSITION: Triplet = [0, 2, 0]
 const SCALING = 5;
-const LEEWAY = 0
+const LEEWAY = 5
 
 export default function CollisionTest() {
   const camera: any = useRef();
-
+  const [started, setStarted] = useState(false)
   const [score, setScore] = useState(0)
   const [lookAt, setLookAt] = useState<Triplet>([0, 0, 0])
   const [gameSpeed, setGameSpeed] = useState<number>(BASE_GAME_SPEED)
   const [leeway, setLeeway] = useState(LEEWAY)
 
+  const [toggle, playBgm, pauseBgm] = useAudio(bgm)
+  
   useEffect(() => {
     if (camera.current) {
       camera.current.lookAt(lookAt)
@@ -51,6 +58,7 @@ export default function CollisionTest() {
 
   const restartGame = () => {
     setLostGame(false)
+    playBgm()
     setPlayerPosition(DEFAULT_STARTING_POSITION)
     setLookAt([0,0,0])
     setScore(0)
@@ -64,7 +72,8 @@ export default function CollisionTest() {
    */
   const loseGame = () => {
     setLostGame(true)
-    setLookAt([0, 120, 0])
+    pauseBgm()
+    setLookAt([0, 0, 0])
     setGameSpeed(BASE_GAME_SPEED)
   }
 
@@ -73,10 +82,23 @@ export default function CollisionTest() {
     setGameSpeed(speed => speed + SCALING)
   }
 
+  if (!started) {
+    const startGame = () => {
+      playBgm()
+      setStarted(true)
+    }
+    return <StartGameScreen startGame={startGame} />
+  }
+
   return (
     <>
-    <ScoreText score={score}/>
-    {lostGame && <GameOverText retry={restartGame}/>}
+
+    {lostGame ? (
+      <>
+      <ScoreText score={score}/>
+      <GameOverScreen retry={restartGame}/>
+      </>
+    ) : <ScoreText score={score}/>}
     <Canvas>
       <Physics frictionGravity={[0, 0, 0]} >
         {/* <Debug color="black" scale={1.1}> */}
@@ -112,54 +134,5 @@ export default function CollisionTest() {
   )
 }
 
-function ScoreText({score}: any) {
-  return (
-    <div className='absolute top-4 right-4 z-50 text-4xl select-none'>
-      Score: {score}
-    </div>
-  )
-}
 
 
-function GameOverText({retry}: any) {
-
-  return (
-    <div className="absolute top-1/2 left-1/2 select-none z-50 flex flex-col items-center justify-center -translate-y-1/2 -translate-x-1/2">
-    <div className='text-6xl mb-4'>
-      You Lost
-    </div>
-    <button 
-      onClick={retry}
-      className='border border-2 py-2 px-4 border-black text-2xl hover:bg-black hover:text-white'>
-      Try again?
-    </button>
-    </div>
-  )
-}
-
-
-// function GameOverText({retry, position = [0, 20 ,0]}: any) {
-
-//   const textRef: any = useRef()
-//   const buttonRef: any = useRef();
-
-//   useFrame(({camera}) => {
-//     textRef.current.quaternion.copy(camera.quaternion)
-//     buttonRef.current.quaternion.copy(camera.quaternion)
-//   })
-//   return (
-//     <>
-//     <Text ref={textRef} color="black" position={[0,150,0]} fontSize={10} 
-//         anchorX="center" 
-//         anchorY={"top-baseline"}>
-//       You lost
-//     </Text>
-//     <Text ref={buttonRef} color="black" position={[0, 150, -5]} fontSize={5}
-//       anchorX="center"
-//       onClick={retry}
-//       anchorY={"middle"}>
-//       Try again?
-//     </Text>
-//     </>
-//   )
-// }
