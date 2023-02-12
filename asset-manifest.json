@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/react-threejs-wall-game/static/css/main.9efdb064.css",
-    "main.js": "/react-threejs-wall-game/static/js/main.ecf1785d.js",
+    "main.css": "/react-threejs-wall-game/static/css/main.10d64a22.css",
+    "main.js": "/react-threejs-wall-game/static/js/main.9867abda.js",
     "static/js/787.138f3980.chunk.js": "/react-threejs-wall-game/static/js/787.138f3980.chunk.js",
+    "static/media/bgm.mp3": "/react-threejs-wall-game/static/media/bgm.a999767df4f2c7d954c9.mp3",
     "index.html": "/react-threejs-wall-game/index.html",
-    "main.9efdb064.css.map": "/react-threejs-wall-game/static/css/main.9efdb064.css.map",
-    "main.ecf1785d.js.map": "/react-threejs-wall-game/static/js/main.ecf1785d.js.map",
+    "main.10d64a22.css.map": "/react-threejs-wall-game/static/css/main.10d64a22.css.map",
+    "main.9867abda.js.map": "/react-threejs-wall-game/static/js/main.9867abda.js.map",
     "787.138f3980.chunk.js.map": "/react-threejs-wall-game/static/js/787.138f3980.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9efdb064.css",
-    "static/js/main.ecf1785d.js"
+    "static/css/main.10d64a22.css",
+    "static/js/main.9867abda.js"
   ]
 }
