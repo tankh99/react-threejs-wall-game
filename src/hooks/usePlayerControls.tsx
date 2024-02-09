@@ -10,6 +10,7 @@ export default function usePlayerControls() {
 
   useEffect(() => {
     const handleKeyDown = (e: any) => {
+      console.log(e.code);
       if (actionByKey(e.code)) {
         setMovement((prevState) => ({
           ...prevState,
@@ -42,10 +43,14 @@ export default function usePlayerControls() {
 
 function actionByKey(key: string) {
   const keys: any = {
-      KeyW: 'moveForward',
-      KeyS: 'moveBackward',
-      KeyA: 'moveLeft',
-      KeyD: 'moveRight'
+      // KeyW: 'moveForward',
+      ArrowUp: 'moveForward',
+      // KeyS: 'moveBackward',
+      ArrowDown: 'moveBackward',
+      // KeyA: 'moveLeft',
+      ArrowLeft: 'moveLeft',
+      // KeyD: 'moveRight',
+      ArrowRight: 'moveRight'
   }
   return keys[key]
 }
